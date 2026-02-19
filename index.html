@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuralExam — AI Examination Engine</title>
+  <meta name="description"
+    content="Enterprise-grade AI examination system with adaptive testing, automated evaluation, and intelligent proctoring." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Chart.js for analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+
+<body>
+  <!-- App Shell -->
+  <div id="app">
+
+    <!-- ===== LANDING PAGE ===== -->
+    <div id="view-landing" class="view active">
+      <!-- Animated background -->
+      <div class="bg-grid"></div>
+      <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      </div>
+
+      <!-- Nav -->
+      <nav class="landing-nav">
+        <div class="nav-brand">
+          <div class="brand-icon"><span class="brand-icon-inner">N</span></div>
+          <span class="brand-name">NeuralExam</span>
+          <span class="brand-badge">Prototype</span>
+        </div>
+        <div class="nav-links">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#metrics" class="nav-link">Performance</a>
+          <a href="#stack" class="nav-link">Technology</a>
+        </div>
+        <div class="nav-actions">
+          <button class="btn btn-ghost" onclick="App.goTo('login', 'teacher')">Teacher Login</button>
+          <button class="btn btn-primary" onclick="App.goTo('login', 'student')">Student Portal</button>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          AI-Powered · Adaptive · Secure
+        </div>
+        <h1 class="hero-title">
+          The Future of<br />
+          <span class="gradient-text">Intelligent Assessment</span>
+        </h1>
+        <p class="hero-subtitle">
+          Enterprise-grade examination engine with adaptive testing, automated evaluation,
+          AI proctoring, and real-time analytics — built for 1M+ concurrent users.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-primary btn-xl" onclick="App.goTo('login', 'teacher')">
+            <i data-lucide="layout-dashboard"></i>
+            Teacher Dashboard
+          </button>
+          <button class="btn btn-outline btn-xl" onclick="App.goTo('login', 'student')">
+            <i data-lucide="graduation-cap"></i>
+            Take an Exam
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-pill"><span class="stat-num">95%</span> Cheating Detection</div>
+          <div class="stat-pill"><span class="stat-num">&lt;1%</span> False Positives</div>
+          <div class="stat-pill"><span class="stat-num">1M+</span> Concurrent Users</div>
+          <div class="stat-pill"><span class="stat-num">99.99%</span> Uptime</div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="features-section">
+        <div class="section-header">
+          <h2 class="section-title">Every Layer. Engineered.</h2>
+          <p class="section-sub">Six integrated AI systems working in concert.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card card-glow-blue">
+            <div class="feature-icon icon-blue"><i data-lucide="brain"></i></div>
+            <h3>Adaptive Testing Engine</h3>
+            <p>IRT 3PL model with Fisher Information maximization. Estimates θ in real-time and selects the optimal next
+              question.</p>
+            <div class="feature-tags"><span>IRT 3PL</span><span>EAP Estimation</span><span>CAT</span></div>
+          </div>
+          <div class="feature-card card-glow-purple">
+            <div class="feature-icon icon-purple"><i data-lucide="sparkles"></i></div>
+            <h3>AI Question Generation</h3>
+            <p>Curriculum-aligned generation with Bloom's taxonomy tagging, parameterized variations, and difficulty
+              calibration.</p>
+            <div class="feature-tags"><span>Bloom's Taxonomy</span><span>RAG</span><span>GPT-4o</span></div>
+          </div>
+          <div class="feature-card card-glow-green">
+            <div class="feature-icon icon-green"><i data-lucide="shield-check"></i></div>
+            <h3>AI Proctoring</h3>
+            <p>Multi-modal monitoring: facial recognition, gaze tracking, audio analysis, and behavior detection with
+              95% accuracy.</p>
+            <div class="feature-tags"><span>ArcFace</span><span>MediaPipe</span><span>YOLOv8</span></div>
+          </div>
+          <div class="feature-card card-glow-orange">
+            <div class="feature-icon icon-orange"><i data-lucide="file-check"></i></div>
+            <h3>Automated Evaluation</h3>
+            <p>Hybrid scoring with DeBERTa-v3 semantic similarity, rubric-based partial credit, and GPT-4o rubric
+              evaluation.</p>
+            <div class="feature-tags"><span>DeBERTa-v3</span><span>Rubric AI</span><span>Partial Credit</span></div>
+          </div>
+          <div class="feature-card card-glow-pink">
+            <div class="feature-icon icon-pink"><i data-lucide="bar-chart-3"></i></div>
+            <h3>Analytics Dashboard</h3>
+            <p>Item analysis, Bloom performance heatmaps, IRT parameter visualization, and proctoring incident reports.
+            </p>
+            <div class="feature-tags"><span>Item Analysis</span><span>Psychometrics</span><span>Reports</span></div>
+          </div>
+          <div class="feature-card card-glow-cyan">
+            <div class="feature-icon icon-cyan"><i data-lucide="accessibility"></i></div>
+            <h3>Accessibility First</h3>
+            <p>TTS/STT support, ARIA compliance, adjustable timing multipliers, and screen reader optimization built-in.
+            </p>
+            <div class="feature-tags"><span>WCAG 2.1 AA</span><span>TTS/STT</span><span>ARIA</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Metrics -->
+      <section id="metrics" class="metrics-section">
+        <div class="section-header">
+          <h2 class="section-title">Performance Targets</h2>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-bar-wrap">
+              <div class="metric-bar" style="--pct:95%; --color: #6366f1"></div>
+            </div>
+            <div class="metric-label">Cheating Detection Rate</div>
+            <div class="metric-value">95%</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-bar-wrap">
+              <div class="metric-bar" style="--pct:98%; --color: #22c55e"></div>
+            </div>
+            <div class="metric-label">False Positive Avoidance</div>
+            <div class="metric-value">&lt;1% FP</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-bar-wrap">
+              <div class="metric-bar" style="--pct:85%; --color: #f59e0b"></div>
+            </div>
+            <div class="metric-label">Adaptive Step Latency</div>
+            <div class="metric-value">&lt;150ms</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-bar-wrap">
+              <div class="metric-bar" style="--pct:99%; --color: #ec4899"></div>
+            </div>
+            <div class="metric-label">System Uptime</div>
+            <div class="metric-value">99.99%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stack -->
+      <section id="stack" class="stack-section">
+        <div class="section-header">
+          <h2 class="section-title">Technology Stack</h2>
+        </div>
+        <div class="stack-grid">
+          <div class="stack-group">
+            <div class="stack-group-title">AI Models</div>
+            <div class="stack-pills">
+              <span class="stack-pill">GPT-4o</span><span class="stack-pill">LLaMA 3 70B</span>
+              <span class="stack-pill">DeBERTa-v3</span><span class="stack-pill">ArcFace</span>
+              <span class="stack-pill">YOLOv8</span><span class="stack-pill">Whisper</span>
+              <span class="stack-pill">Video Swin</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-group-title">Backend</div>
+            <div class="stack-pills">
+              <span class="stack-pill">FastAPI</span><span class="stack-pill">PostgreSQL</span>
+              <span class="stack-pill">Redis</span><span class="stack-pill">Kafka</span>
+              <span class="stack-pill">FAISS</span><span class="stack-pill">Kubernetes</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-group-title">Frontend</div>
+            <div class="stack-pills">
+              <span class="stack-pill">React</span><span class="stack-pill">Next.js</span>
+              <span class="stack-pill">TailwindCSS</span><span class="stack-pill">GraphQL</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-group-title">Infrastructure</div>
+            <div class="stack-pills">
+              <span class="stack-pill">AWS EKS</span><span class="stack-pill">S3</span>
+              <span class="stack-pill">AES-256</span><span class="stack-pill">Zero Trust</span>
+              <span class="stack-pill">SOC2</span><span class="stack-pill">GDPR</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="landing-footer">
+        <div class="footer-brand">
+          <div class="brand-icon sm"><span class="brand-icon-inner">N</span></div>
+          <span>NeuralExam Enterprise © 2026</span>
+        </div>
+        <div class="footer-links">
+          <a href="#">Privacy</a><a href="#">Security</a><a href="#">Compliance</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ===== LOGIN VIEW ===== -->
+    <div id="view-login" class="view">
+      <div class="bg-grid"></div>
+      <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+      </div>
+      <div class="login-container">
+        <div class="login-card glass-card">
+          <div class="login-header">
+            <div class="brand-icon lg"><span class="brand-icon-inner">N</span></div>
+            <h2 id="login-title">Welcome Back</h2>
+            <p id="login-subtitle">Sign in to your account</p>
+          </div>
+          <div class="role-tabs">
+            <button class="role-tab active" id="tab-teacher" onclick="App.setLoginRole('teacher')">
+              <i data-lucide="layout-dashboard"></i> Teacher
+            </button>
+            <button class="role-tab" id="tab-student" onclick="App.setLoginRole('student')">
+              <i data-lucide="graduation-cap"></i> Student
+            </button>
+          </div>
+          <div class="login-form">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="login-email" class="form-input" placeholder="you@institution.edu"
+                value="demo@neuralexam.ai" />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" class="form-input" placeholder="••••••••" value="demo1234" />
+            </div>
+            <div class="form-options">
+              <label class="checkbox-label"><input type="checkbox" checked /> Remember me</label>
+              <a href="#" class="link-text">Forgot password?</a>
+            </div>
+            <button class="btn btn-primary btn-full" id="login-btn" onclick="App.handleLogin()">
+              Sign In
+            </button>
+            <div class="login-demo-note">
+              <i data-lucide="info"></i>
+              Demo credentials pre-filled. Just click Sign In.
+            </div>
+          </div>
+        </div>
+        <button class="back-btn" onclick="App.goTo('landing')">
+          <i data-lucide="arrow-left"></i> Back to Home
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== TEACHER DASHBOARD ===== -->
+    <div id="view-teacher" class="view">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="teacher-sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-icon sm"><span class="brand-icon-inner">N</span></div>
+          <span class="brand-name">NeuralExam</span>
+        </div>
+        <nav class="sidebar-nav">
+          <button class="sidebar-item active" data-tab="overview" onclick="Teacher.switchTab('overview')">
+            <i data-lucide="layout-dashboard"></i><span>Overview</span>
+          </button>
+          <button class="sidebar-item" data-tab="questions" onclick="Teacher.switchTab('questions')">
+            <i data-lucide="database"></i><span>Question Bank</span>
+          </button>
+          <button class="sidebar-item" data-tab="exams" onclick="Teacher.switchTab('exams')">
+            <i data-lucide="file-text"></i><span>Exam Builder</span>
+          </button>
+          <button class="sidebar-item" data-tab="analytics" onclick="Teacher.switchTab('analytics')">
+            <i data-lucide="bar-chart-3"></i><span>Analytics</span>
+          </button>
+          <button class="sidebar-item" data-tab="proctoring" onclick="Teacher.switchTab('proctoring')">
+            <i data-lucide="shield-check"></i><span>Proctoring</span>
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-pill">
+            <div class="user-avatar">DR</div>
+            <div class="user-info">
+              <div class="user-name">Dr. Reyes</div>
+              <div class="user-role">Instructor</div>
+            </div>
+          </div>
+          <button class="icon-btn" onclick="App.goTo('landing')" title="Logout"><i data-lucide="log-out"></i></button>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main class="dashboard-main">
+        <!-- Overview Tab -->
+        <div class="tab-content active" id="tab-overview">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Dashboard Overview</h1>
+              <p class="page-sub">Welcome back, Dr. Reyes. Here's what's happening today.</p>
+            </div>
+            <button class="btn btn-primary" onclick="Teacher.switchTab('exams')">
+              <i data-lucide="plus"></i> New Exam
+            </button>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-icon icon-blue"><i data-lucide="users"></i></div>
+              <div class="kpi-body">
+                <div class="kpi-value" id="kpi-students">1,247</div>
+                <div class="kpi-label">Active Students</div>
+              </div>
+              <div class="kpi-trend up">+12%</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon icon-purple"><i data-lucide="file-text"></i></div>
+              <div class="kpi-body">
+                <div class="kpi-value" id="kpi-exams">38</div>
+                <div class="kpi-label">Exams Created</div>
+              </div>
+              <div class="kpi-trend up">+5</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon icon-green"><i data-lucide="database"></i></div>
+              <div class="kpi-body">
+                <div class="kpi-value" id="kpi-questions">2,841</div>
+                <div class="kpi-label">Questions in Bank</div>
+              </div>
+              <div class="kpi-trend up">+89</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon icon-orange"><i data-lucide="alert-triangle"></i></div>
+              <div class="kpi-body">
+                <div class="kpi-value" id="kpi-flags">7</div>
+                <div class="kpi-label">Proctoring Flags</div>
+              </div>
+              <div class="kpi-trend down">-3</div>
+            </div>
+          </div>
+          <div class="overview-charts">
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Score Distribution</h3><span class="chart-badge">Last 30 days</span>
+              </div>
+              <canvas id="chart-score-dist" height="200"></canvas>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Bloom's Taxonomy Coverage</h3><span class="chart-badge">All Exams</span>
+              </div>
+              <canvas id="chart-bloom" height="200"></canvas>
+            </div>
+          </div>
+          <div class="recent-exams">
+            <div class="section-row-header">
+              <h3>Recent Exams</h3><button class="link-btn" onclick="Teacher.switchTab('exams')">View All</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table" id="recent-exams-table">
+                <thead>
+                  <tr>
+                    <th>Exam Name</th>
+                    <th>Subject</th>
+                    <th>Students</th>
+                    <th>Avg Score</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-exams-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Bank Tab -->
+        <div class="tab-content" id="tab-questions">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Question Bank</h1>
+              <p class="page-sub">Manage, tag, and calibrate your question library.</p>
+            </div>
+            <button class="btn btn-primary" onclick="Teacher.openAddQuestion()">
+              <i data-lucide="plus"></i> Add Question
+            </button>
+          </div>
+          <div class="filter-bar">
+            <input type="text" class="search-input" id="q-search" placeholder="Search questions..."
+              oninput="Teacher.filterQuestions()" />
+            <select class="filter-select" id="q-subject" onchange="Teacher.filterQuestions()">
+              <option value="">All Subjects</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Chemistry">Chemistry</option>
+            </select>
+            <select class="filter-select" id="q-bloom" onchange="Teacher.filterQuestions()">
+              <option value="">All Bloom Levels</option>
+              <option value="Remember">Remember</option>
+              <option value="Understand">Understand</option>
+              <option value="Apply">Apply</option>
+              <option value="Analyze">Analyze</option>
+              <option value="Evaluate">Evaluate</option>
+              <option value="Create">Create</option>
+            </select>
+            <select class="filter-select" id="q-diff" onchange="Teacher.filterQuestions()">
+              <option value="">All Difficulties</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>Subject</th>
+                  <th>Bloom</th>
+                  <th>Difficulty</th>
+                  <th>Type</th>
+                  <th>IRT (a,b,c)</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="questions-table-body"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="q-pagination"></div>
+        </div>
+
+        <!-- Exam Builder Tab -->
+        <div class="tab-content" id="tab-exams">
+          <div class="page-header">
+            <h1 class="page-title">Exam Builder</h1>
+            <p class="page-sub">Configure and generate AI-powered adaptive exams.</p>
+          </div>
+          <div class="builder-layout">
+            <div class="builder-form glass-card">
+              <h3 class="form-section-title">Exam Configuration</h3>
+              <div class="form-group">
+                <label>Exam Title</label>
+                <input type="text" class="form-input" id="exam-title" placeholder="e.g. Midterm Exam — Data Structures"
+                  value="Midterm Exam — Data Structures" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Subject</label>
+                  <select class="form-input" id="exam-subject">
+                    <option>Computer Science</option>
+                    <option>Mathematics</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Duration (min)</label>
+                  <input type="number" class="form-input" id="exam-duration" value="60" min="10" max="300" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Total Questions</label>
+                <input type="range" class="range-input" id="exam-qcount" min="5" max="50" value="20"
+                  oninput="Teacher.updateQCount(this.value)" />
+                <div class="range-label"><span>5</span><span id="exam-qcount-display">20 Questions</span><span>50</span>
+                </div>
+              </div>
+              <h3 class="form-section-title">Difficulty Distribution</h3>
+              <div class="dist-sliders">
+                <div class="dist-row">
+                  <label>Easy</label>
+                  <input type="range" class="range-input range-green" id="dist-easy" min="0" max="100" value="30"
+                    oninput="Teacher.updateDist()" />
+                  <span id="dist-easy-val" class="dist-val">30%</span>
+                </div>
+                <div class="dist-row">
+                  <label>Medium</label>
+                  <input type="range" class="range-input range-yellow" id="dist-medium" min="0" max="100" value="50"
+                    oninput="Teacher.updateDist()" />
+                  <span id="dist-medium-val" class="dist-val">50%</span>
+                </div>
+                <div class="dist-row">
+                  <label>Hard</label>
+                  <input type="range" class="range-input range-red" id="dist-hard" min="0" max="100" value="20"
+                    oninput="Teacher.updateDist()" />
+                  <span id="dist-hard-val" class="dist-val">20%</span>
+                </div>
+              </div>
+              <h3 class="form-section-title">Bloom's Taxonomy Weights</h3>
+              <div class="bloom-weights" id="bloom-weights-container"></div>
+              <h3 class="form-section-title">Exam Settings</h3>
+              <div class="toggle-group">
+                <div class="toggle-row">
+                  <div>
+                    <div class="toggle-label">Adaptive Testing (CAT)</div>
+                    <div class="toggle-sub">Dynamically adjust difficulty based on student ability</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" id="setting-adaptive" checked /><span
+                      class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div>
+                    <div class="toggle-label">AI Proctoring</div>
+                    <div class="toggle-sub">Enable facial recognition and gaze tracking</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" id="setting-proctor" checked /><span
+                      class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div>
+                    <div class="toggle-label">Randomize Questions</div>
+                    <div class="toggle-sub">Shuffle question order per student</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" id="setting-shuffle" checked /><span
+                      class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div>
+                    <div class="toggle-label">Accessibility Mode</div>
+                    <div class="toggle-sub">Enable TTS and extended time options</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" id="setting-a11y" /><span
+                      class="toggle-slider"></span></label>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-full mt-4" onclick="Teacher.createExam()">
+                <i data-lucide="sparkles"></i> Generate Exam with AI
+              </button>
+            </div>
+            <div class="builder-preview">
+              <div class="glass-card preview-card">
+                <h3>Exam Preview</h3>
+                <div id="exam-preview-content">
+                  <div class="preview-placeholder">
+                    <i data-lucide="file-text"></i>
+                    <p>Configure settings and click "Generate Exam" to preview.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div class="tab-content" id="tab-analytics">
+          <div class="page-header">
+            <h1 class="page-title">Analytics & Reports</h1>
+            <p class="page-sub">Deep insights into student performance and item quality.</p>
+          </div>
+          <div class="analytics-grid">
+            <div class="chart-card span-2">
+              <div class="chart-header">
+                <h3>Ability Distribution (θ) — All Students</h3>
+              </div>
+              <canvas id="chart-theta" height="180"></canvas>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Item Characteristic Curves</h3>
+              </div>
+              <canvas id="chart-icc" height="220"></canvas>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Bloom Level Performance</h3>
+              </div>
+              <canvas id="chart-bloom-perf" height="220"></canvas>
+            </div>
+            <div class="chart-card span-2">
+              <div class="chart-header">
+                <h3>Score Trend — Last 6 Exams</h3>
+              </div>
+              <canvas id="chart-trend" height="160"></canvas>
+            </div>
+          </div>
+          <div class="item-analysis-section">
+            <h3>Item Analysis Report</h3>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Question ID</th>
+                    <th>Difficulty (b)</th>
+                    <th>Discrimination (a)</th>
+                    <th>Guessing (c)</th>
+                    <th>P-value</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="item-analysis-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proctoring Tab -->
+        <div class="tab-content" id="tab-proctoring">
+          <div class="page-header">
+            <h1 class="page-title">Proctoring Reports</h1>
+            <p class="page-sub">Review flagged incidents and risk scores.</p>
+          </div>
+          <div class="proctor-stats">
+            <div class="proctor-stat-card">
+              <div class="ps-value" id="ps-total">247</div>
+              <div class="ps-label">Sessions Monitored</div>
+            </div>
+            <div class="proctor-stat-card">
+              <div class="ps-value text-yellow" id="ps-warnings">18</div>
+              <div class="ps-label">Warnings Issued</div>
+            </div>
+            <div class="proctor-stat-card">
+              <div class="ps-value text-orange" id="ps-flagged">7</div>
+              <div class="ps-label">Flagged Sessions</div>
+            </div>
+            <div class="proctor-stat-card">
+              <div class="ps-value text-red" id="ps-terminated">2</div>
+              <div class="ps-label">Auto-Terminated</div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Exam</th>
+                  <th>Risk Score</th>
+                  <th>Incidents</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="proctor-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== STUDENT LOBBY ===== -->
+    <div id="view-student" class="view">
+      <div class="bg-grid"></div>
+      <div class="student-layout">
+        <aside class="sidebar">
+          <div class="sidebar-brand">
+            <div class="brand-icon sm"><span class="brand-icon-inner">N</span></div>
+            <span class="brand-name">NeuralExam</span>
+          </div>
+          <nav class="sidebar-nav">
+            <button class="sidebar-item active" data-tab="s-exams" onclick="Student.switchTab('s-exams')">
+              <i data-lucide="file-text"></i><span>My Exams</span>
+            </button>
+            <button class="sidebar-item" data-tab="s-results" onclick="Student.switchTab('s-results')">
+              <i data-lucide="bar-chart-2"></i><span>Results</span>
+            </button>
+            <button class="sidebar-item" data-tab="s-profile" onclick="Student.switchTab('s-profile')">
+              <i data-lucide="user"></i><span>Profile</span>
+            </button>
+          </nav>
+          <div class="sidebar-footer">
+            <div class="user-pill">
+              <div class="user-avatar">AK</div>
+              <div class="user-info">
+                <div class="user-name">Arjun Kumar</div>
+                <div class="user-role">Student · CS-3B</div>
+              </div>
+            </div>
+            <button class="icon-btn" onclick="App.goTo('landing')" title="Logout"><i data-lucide="log-out"></i></button>
+          </div>
+        </aside>
+        <main class="dashboard-main">
+          <div class="tab-content active" id="tab-s-exams">
+            <div class="page-header">
+              <div>
+                <h1 class="page-title">Available Exams</h1>
+                <p class="page-sub">Your scheduled and available assessments.</p>
+              </div>
+            </div>
+            <div class="exam-cards-grid" id="student-exam-cards"></div>
+          </div>
+          <div class="tab-content" id="tab-s-results">
+            <div class="page-header">
+              <h1 class="page-title">My Results</h1>
+            </div>
+            <div id="student-results-content">
+              <div class="empty-state"><i data-lucide="bar-chart-2"></i>
+                <p>No completed exams yet. Take an exam to see your results here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content" id="tab-s-profile">
+            <div class="page-header">
+              <h1 class="page-title">My Profile</h1>
+            </div>
+            <div class="profile-card glass-card">
+              <div class="profile-avatar-lg">AK</div>
+              <div class="profile-info">
+                <h2>Arjun Kumar</h2>
+                <p>arjun.kumar@university.edu</p>
+                <div class="profile-tags"><span class="tag">Computer Science</span><span class="tag">Year 3</span><span
+                    class="tag">Section B</span></div>
+              </div>
+              <div class="profile-stats">
+                <div class="ps-card">
+                  <div class="ps-num">12</div>
+                  <div class="ps-lbl">Exams Taken</div>
+                </div>
+                <div class="ps-card">
+                  <div class="ps-num">74%</div>
+                  <div class="ps-lbl">Avg Score</div>
+                </div>
+                <div class="ps-card">
+                  <div class="ps-num">0.42</div>
+                  <div class="ps-lbl">Avg θ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- ===== EXAM INTERFACE ===== -->
+    <div id="view-exam" class="view">
+      <!-- Proctor overlay -->
+      <div class="proctor-overlay" id="proctor-overlay">
+        <div class="proctor-cam-wrap">
+          <video id="proctor-video" autoplay muted playsinline></video>
+          <canvas id="proctor-canvas"></canvas>
+          <div class="proctor-status-bar">
+            <div class="proctor-dot" id="proctor-dot"></div>
+            <span id="proctor-status-text">Initializing...</span>
+          </div>
+        </div>
+        <div class="risk-meter">
+          <div class="risk-label">Risk Score</div>
+          <div class="risk-value" id="risk-score-display">0</div>
+          <div class="risk-bar-track">
+            <div class="risk-bar-fill" id="risk-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam header -->
+      <header class="exam-header">
+        <div class="exam-header-left">
+          <div class="brand-icon sm"><span class="brand-icon-inner">N</span></div>
+          <div>
+            <div class="exam-name" id="exam-header-name">Loading...</div>
+            <div class="exam-meta-row">
+              <span id="exam-subject-badge" class="subject-badge">Subject</span>
+              <span class="adaptive-badge"><i data-lucide="zap"></i> Adaptive</span>
+            </div>
+          </div>
+        </div>
+        <div class="exam-header-center">
+          <div class="timer-display" id="exam-timer">59:59</div>
+          <div class="timer-label">Remaining</div>
+        </div>
+        <div class="exam-header-right">
+          <div class="theta-display">
+            <div class="theta-label">Ability (θ)</div>
+            <div class="theta-value" id="theta-display">0.00</div>
+          </div>
+          <div class="progress-ring-wrap">
+            <svg class="progress-ring" width="52" height="52">
+              <circle class="ring-bg" cx="26" cy="26" r="22" />
+              <circle class="ring-fill" id="ring-fill" cx="26" cy="26" r="22" stroke-dasharray="138.2"
+                stroke-dashoffset="138.2" />
+            </svg>
+            <div class="ring-label" id="ring-label">0/20</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Exam body -->
+      <div class="exam-body">
+        <!-- Question navigator -->
+        <aside class="question-nav" id="question-nav">
+          <div class="qnav-title">Questions</div>
+          <div class="qnav-grid" id="qnav-grid"></div>
+          <div class="qnav-legend">
+            <div class="legend-item">
+              <div class="legend-dot answered"></div>Answered
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot current"></div>Current
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot unanswered"></div>Unanswered
+            </div>
+          </div>
+        </aside>
+
+        <!-- Question area -->
+        <div class="question-area">
+          <div class="question-card glass-card" id="question-card">
+            <div class="question-meta-row">
+              <span class="q-number" id="q-number">Q1</span>
+              <span class="bloom-badge" id="q-bloom">Remember</span>
+              <span class="diff-badge" id="q-diff">Easy</span>
+              <span class="type-badge" id="q-type">MCQ</span>
+              <div class="irt-info" id="q-irt">a=1.2 b=-0.5 c=0.25</div>
+            </div>
+            <div class="question-text" id="question-text">Loading question...</div>
+            <div class="answer-area" id="answer-area"></div>
+            <div class="question-actions">
+              <button class="btn btn-ghost" id="btn-prev" onclick="Exam.prevQuestion()" disabled>
+                <i data-lucide="arrow-left"></i> Previous
+              </button>
+              <button class="btn btn-outline" onclick="Exam.flagQuestion()">
+                <i data-lucide="flag"></i> Flag
+              </button>
+              <button class="btn btn-primary" id="btn-next" onclick="Exam.nextQuestion()">
+                Next <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Adaptive info panel -->
+          <div class="adaptive-panel glass-card">
+            <div class="adaptive-panel-title"><i data-lucide="zap"></i> Adaptive Engine</div>
+            <div class="adaptive-stats">
+              <div class="adp-stat">
+                <div class="adp-val" id="adp-theta">0.00</div>
+                <div class="adp-lbl">θ Estimate</div>
+              </div>
+              <div class="adp-stat">
+                <div class="adp-val" id="adp-se">∞</div>
+                <div class="adp-lbl">Std Error</div>
+              </div>
+              <div class="adp-stat">
+                <div class="adp-val" id="adp-info">0.00</div>
+                <div class="adp-lbl">Fisher Info</div>
+              </div>
+              <div class="adp-stat">
+                <div class="adp-val" id="adp-conf">0%</div>
+                <div class="adp-lbl">Confidence</div>
+              </div>
+            </div>
+            <canvas id="theta-chart" height="80"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="exam-footer">
+        <div class="exam-footer-info" id="exam-footer-info">Answer all questions to submit</div>
+        <button class="btn btn-danger" onclick="Exam.submitExam()">
+          <i data-lucide="send"></i> Submit Exam
+        </button>
+      </div>
+
+      <!-- Proctor alert banner -->
+      <div class="proctor-alert" id="proctor-alert" style="display:none">
+        <i data-lucide="alert-triangle"></i>
+        <span id="proctor-alert-text">Warning: Suspicious activity detected</span>
+        <button onclick="Exam.dismissAlert()"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+
+    <!-- ===== RESULTS VIEW ===== -->
+    <div id="view-results" class="view">
+      <div class="bg-grid"></div>
+      <div class="results-container">
+        <div class="results-header">
+          <div class="results-score-ring">
+            <svg width="160" height="160">
+              <circle class="ring-bg" cx="80" cy="80" r="70" stroke-width="12" />
+              <circle class="ring-fill" id="result-ring" cx="80" cy="80" r="70" stroke-dasharray="439.8"
+                stroke-dashoffset="439.8" stroke-width="12" />
+            </svg>
+            <div class="results-score-center">
+              <div class="results-score-num" id="result-score">0%</div>
+              <div class="results-score-label">Score</div>
+            </div>
+          </div>
+          <div class="results-summary">
+            <h1 id="result-title">Exam Complete!</h1>
+            <p id="result-subtitle">Here's your detailed performance breakdown.</p>
+            <div class="result-pills">
+              <div class="result-pill"><i data-lucide="check-circle"></i><span id="result-correct">0 Correct</span>
+              </div>
+              <div class="result-pill"><i data-lucide="x-circle"></i><span id="result-wrong">0 Wrong</span></div>
+              <div class="result-pill"><i data-lucide="zap"></i><span id="result-theta">θ = 0.00</span></div>
+              <div class="result-pill"><i data-lucide="clock"></i><span id="result-time">0 min</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-charts">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Bloom's Taxonomy Performance</h3>
+            </div>
+            <canvas id="result-bloom-chart" height="250"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Ability Progression (θ)</h3>
+            </div>
+            <canvas id="result-theta-chart" height="250"></canvas>
+          </div>
+        </div>
+
+        <div class="results-breakdown">
+          <h3>Question-by-Question Breakdown</h3>
+          <div id="results-breakdown-list"></div>
+        </div>
+
+        <div class="results-actions">
+          <button class="btn btn-outline" onclick="App.goTo('student')">
+            <i data-lucide="arrow-left"></i> Back to Dashboard
+          </button>
+          <button class="btn btn-primary" onclick="window.print()">
+            <i data-lucide="download"></i> Download Report
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal overlay -->
+    <div class="modal-overlay" id="modal-overlay" onclick="App.closeModal()"></div>
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Modal</h3>
+        <button class="icon-btn" onclick="App.closeModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toast-container"></div>
+  </div>
+
+  <script src="js/questionEngine.js"></script>
+  <script src="js/adaptiveEngine.js"></script>
+  <script src="js/evaluationEngine.js"></script>
+  <script src="js/proctoring.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
