@@ -476,19 +476,19 @@ canvas {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 8px 16px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 40px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text2);
 }
 
 .stat-num {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 16px;
   color: var(--text);
 }
 

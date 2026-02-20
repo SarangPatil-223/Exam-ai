@@ -469,11 +469,13 @@ canvas {
   padding: 10px 20px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 40px;
+  border-radius: 4px;
+  /* Reduced from 10px for a sharper look */
   font-size: 14px;
   font-weight: 500;
   color: var(--text2);
 }
+
 
 .stat-num {
   font-family: 'Outfit', sans-serif;
