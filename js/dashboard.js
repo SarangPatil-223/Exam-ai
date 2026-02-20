@@ -69,8 +69,8 @@ const Teacher = (() => {
         datasets: [{
           label: 'Students',
           data: [2, 3, 5, 8, 12, 18, 35, 42, 28, 15],
-          backgroundColor: 'rgba(99,102,241,0.6)',
-          borderColor: '#6366f1',
+          backgroundColor: 'rgba(38,204,194,0.55)',
+          borderColor: '#26CCC2',
           borderWidth: 1,
           borderRadius: 4,
         }]
@@ -95,7 +95,7 @@ const Teacher = (() => {
         labels: ['Remember', 'Understand', 'Apply', 'Analyze', 'Evaluate', 'Create'],
         datasets: [{
           data: [18, 22, 25, 18, 10, 7],
-          backgroundColor: ['#6366f1', '#a855f7', '#22c55e', '#f59e0b', '#ec4899', '#06b6d4'],
+          backgroundColor: ['#26CCC2', '#FFB76C', '#6AECE1', '#FFF57E', '#ff9f7f', '#5de8d7'],
           borderWidth: 0,
         }]
       },
@@ -257,7 +257,7 @@ const Teacher = (() => {
     const preview = document.getElementById('exam-preview-content');
     preview.innerHTML = `
       <div style="display:flex;flex-direction:column;gap:14px">
-        <div style="padding:14px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);border-radius:10px">
+        <div style="padding:14px;background:rgba(38,204,194,0.08);border:1px solid rgba(38,204,194,0.2);border-radius:10px">
           <div style="font-weight:700;font-size:15px;margin-bottom:4px">${title}</div>
           <div style="font-size:12px;color:#94a3b8">${subject} · ${questions.length} Questions · ${document.getElementById('exam-duration').value} min</div>
         </div>
@@ -303,7 +303,7 @@ const Teacher = (() => {
     const data = Array.from({ length: 40 }, () => +(Math.random() * 4 - 2).toFixed(2));
     charts.theta = new Chart(ctx, {
       type: 'bar',
-      data: { labels: data.map((_, i) => 'S' + (i + 1)), datasets: [{ label: 'θ', data, backgroundColor: data.map(v => v >= 0 ? 'rgba(99,102,241,0.6)' : 'rgba(239,68,68,0.6)'), borderRadius: 3 }] },
+      data: { labels: data.map((_, i) => 'S' + (i + 1)), datasets: [{ label: 'θ', data, backgroundColor: data.map(v => v >= 0 ? 'rgba(38,204,194,0.6)' : 'rgba(255,107,107,0.6)'), borderRadius: 3 }] },
       options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b', font: { size: 10 } } } } }
     });
   }
@@ -313,7 +313,7 @@ const Teacher = (() => {
     if (!ctx || charts.icc) return;
     const theta = Array.from({ length: 60 }, (_, i) => -3 + i * 0.1);
     const items = [{ a: 0.8, b: -1, c: 0.25, label: 'Easy' }, { a: 1.4, b: 0, c: 0.25, label: 'Medium' }, { a: 2.0, b: 1.5, c: 0.25, label: 'Hard' }];
-    const colors = ['#22c55e', '#f59e0b', '#ef4444'];
+    const colors = ['#6AECE1', '#FFF57E', '#ff6b6b'];
     charts.icc = new Chart(ctx, {
       type: 'line',
       data: { labels: theta.map(t => t.toFixed(1)), datasets: items.map((it, i) => ({ label: it.label, data: theta.map(t => AdaptiveEngine.irt3PL(t, it.a, it.b, it.c)), borderColor: colors[i], backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.4 })) },
@@ -326,7 +326,7 @@ const Teacher = (() => {
     if (!ctx || charts.bloomPerf) return;
     charts.bloomPerf = new Chart(ctx, {
       type: 'radar',
-      data: { labels: ['Remember', 'Understand', 'Apply', 'Analyze', 'Evaluate', 'Create'], datasets: [{ label: 'Class Avg', data: [82, 75, 68, 61, 55, 48], backgroundColor: 'rgba(99,102,241,0.2)', borderColor: '#6366f1', borderWidth: 2, pointBackgroundColor: '#6366f1' }] },
+      data: { labels: ['Remember', 'Understand', 'Apply', 'Analyze', 'Evaluate', 'Create'], datasets: [{ label: 'Class Avg', data: [82, 75, 68, 61, 55, 48], backgroundColor: 'rgba(38,204,194,0.2)', borderColor: '#26CCC2', borderWidth: 2, pointBackgroundColor: '#26CCC2' }] },
       options: { responsive: true, plugins: { legend: { display: false } }, scales: { r: { grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: '#64748b', font: { size: 9 }, backdropColor: 'transparent' }, pointLabels: { color: '#94a3b8', font: { size: 11 } }, min: 0, max: 100 } } }
     });
   }
@@ -336,7 +336,7 @@ const Teacher = (() => {
     if (!ctx || charts.trend) return;
     charts.trend = new Chart(ctx, {
       type: 'line',
-      data: { labels: ['Exam 1', 'Exam 2', 'Exam 3', 'Exam 4', 'Exam 5', 'Exam 6'], datasets: [{ label: 'Avg Score', data: [68, 72, 70, 75, 74, 81], borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,0.1)', borderWidth: 2, fill: true, tension: 0.4, pointBackgroundColor: '#6366f1', pointRadius: 5 }] },
+      data: { labels: ['Exam 1', 'Exam 2', 'Exam 3', 'Exam 4', 'Exam 5', 'Exam 6'], datasets: [{ label: 'Avg Score', data: [68, 72, 70, 75, 74, 81], borderColor: '#FFB76C', backgroundColor: 'rgba(255,183,108,0.1)', borderWidth: 2, fill: true, tension: 0.4, pointBackgroundColor: '#FFB76C', pointRadius: 5 }] },
       options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }, y: { min: 50, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } } } }
     });
   }
@@ -372,7 +372,7 @@ const Teacher = (() => {
       <tr>
         <td><strong>${r.student}</strong></td>
         <td>${r.exam}</td>
-        <td><span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:${r.risk < 30 ? '#22c55e' : r.risk < 60 ? '#f59e0b' : '#ef4444'}">${r.risk}</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:${r.risk < 30 ? '#6AECE1' : r.risk < 60 ? '#FFF57E' : '#ff6b6b'}">${r.risk}</span></td>
         <td style="font-size:12px;color:#94a3b8">${r.incidents}</td>
         <td><span class="badge ${r.status === 'Clean' ? 'badge-green' : r.status === 'Warning' ? 'badge-yellow' : r.status === 'Flagged' ? 'badge-red' : 'badge-red'}">${r.status}</span></td>
         <td><button class="btn btn-ghost" style="font-size:12px;padding:4px 10px" onclick="App.toast('Opening session recording...','info')">Review</button></td>

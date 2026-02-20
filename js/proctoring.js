@@ -50,15 +50,15 @@ const Proctoring = (() => {
       ctx.fillStyle = '#1e293b';
       ctx.beginPath(); ctx.ellipse(90, 55, 30, 38, 0, 0, Math.PI * 2); ctx.fill();
       // Eyes
-      ctx.fillStyle = '#6366f1';
+      ctx.fillStyle = '#26CCC2';
       ctx.beginPath(); ctx.arc(78, 48, 5, 0, Math.PI * 2); ctx.fill();
       ctx.beginPath(); ctx.arc(102, 48, 5, 0, Math.PI * 2); ctx.fill();
       // Face box
-      ctx.strokeStyle = '#22c55e';
+      ctx.strokeStyle = '#6AECE1';
       ctx.lineWidth = 2;
       ctx.strokeRect(55, 12, 70, 90);
       // Gaze line
-      ctx.strokeStyle = 'rgba(99,102,241,0.6)';
+      ctx.strokeStyle = 'rgba(38,204,194,0.6)';
       ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(90, 48); ctx.lineTo(90 + (Math.random() - 0.5) * 20, 48 + (Math.random() - 0.5) * 10); ctx.stroke();
       requestAnimationFrame(draw);
@@ -71,11 +71,11 @@ const Proctoring = (() => {
     if (!canvasCtx || !video.videoWidth) return;
     canvasCtx.drawImage(video, 0, 0, canvas.width, canvas.height);
     // Face bounding box
-    canvasCtx.strokeStyle = '#22c55e';
+    canvasCtx.strokeStyle = '#6AECE1';
     canvasCtx.lineWidth = 2;
     canvasCtx.strokeRect(canvas.width * 0.25, canvas.height * 0.1, canvas.width * 0.5, canvas.height * 0.75);
     // Gaze dot
-    canvasCtx.fillStyle = 'rgba(99,102,241,0.8)';
+    canvasCtx.fillStyle = 'rgba(38,204,194,0.8)';
     canvasCtx.beginPath();
     canvasCtx.arc(canvas.width / 2 + (Math.random() - 0.5) * 20, canvas.height / 2 + (Math.random() - 0.5) * 15, 4, 0, Math.PI * 2);
     canvasCtx.fill();
@@ -125,13 +125,13 @@ const Proctoring = (() => {
     display.textContent = Math.round(score);
     if (bar) {
       bar.style.width = score + '%';
-      bar.style.background = score < 30 ? '#22c55e' : score < 60 ? '#f59e0b' : '#ef4444';
+      bar.style.background = score < 30 ? '#6AECE1' : score < 60 ? '#FFF57E' : '#ff6b6b';
     }
     if (dot) {
       dot.className = 'proctor-dot' + (score >= 60 ? ' danger' : score >= 30 ? ' warning' : '');
     }
     if (display) {
-      display.style.color = score < 30 ? '#22c55e' : score < 60 ? '#f59e0b' : '#ef4444';
+      display.style.color = score < 30 ? '#6AECE1' : score < 60 ? '#FFF57E' : '#ff6b6b';
     }
   }
 

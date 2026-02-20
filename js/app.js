@@ -186,7 +186,7 @@ const Exam = (() => {
       type: 'line',
       data: {
         labels: ['Start'],
-        datasets: [{ label: 'θ', data: [0], borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,0.1)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#6366f1' }]
+        datasets: [{ label: 'θ', data: [0], borderColor: '#26CCC2', backgroundColor: 'rgba(38,204,194,0.1)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#26CCC2' }]
       },
       options: {
         responsive: true, animation: false,
@@ -209,7 +209,7 @@ const Exam = (() => {
       if (el) {
         el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
         if (secondsLeft <= 300) el.style.color = '#ef4444';
-        else if (secondsLeft <= 600) el.style.color = '#f59e0b';
+        else if (secondsLeft <= 600) el.style.color = '#FFF57E';
         else el.style.color = '';
       }
       if (secondsLeft <= 0) submitExam();
@@ -322,7 +322,7 @@ const App = (() => {
     if (ring) {
       const circumference = 439.8;
       const offset = circumference - (pct / 100) * circumference;
-      ring.style.stroke = pct >= 80 ? '#22c55e' : pct >= 60 ? '#f59e0b' : '#ef4444';
+      ring.style.stroke = pct >= 80 ? '#6AECE1' : pct >= 60 ? '#FFF57E' : '#ff6b6b';
       setTimeout(() => { ring.style.transition = 'stroke-dashoffset 1.5s ease'; ring.style.strokeDashoffset = offset; }, 100);
     }
 
@@ -336,7 +336,7 @@ const App = (() => {
         type: 'radar',
         data: {
           labels,
-          datasets: [{ label: 'Your Score', data: labels.map(l => bloomData[l] || 0), backgroundColor: 'rgba(99,102,241,0.2)', borderColor: '#6366f1', borderWidth: 2, pointBackgroundColor: '#6366f1' }]
+          datasets: [{ label: 'Your Score', data: labels.map(l => bloomData[l] || 0), backgroundColor: 'rgba(38,204,194,0.2)', borderColor: '#26CCC2', borderWidth: 2, pointBackgroundColor: '#26CCC2' }]
         },
         options: { responsive: true, plugins: { legend: { display: false } }, scales: { r: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: '#64748b', font: { size: 9 }, backdropColor: 'transparent' }, pointLabels: { color: '#94a3b8', font: { size: 11 } } } } }
       });
@@ -350,7 +350,7 @@ const App = (() => {
         type: 'line',
         data: {
           labels: thetaHistory.map((_, i) => 'Q' + (i + 1)),
-          datasets: [{ label: 'θ', data: thetaHistory, borderColor: '#a855f7', backgroundColor: 'rgba(168,85,247,0.1)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#a855f7' }]
+          datasets: [{ label: 'θ', data: thetaHistory, borderColor: '#FFB76C', backgroundColor: 'rgba(255,183,108,0.1)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#FFB76C' }]
         },
         options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } }, y: { min: -3, max: 3, ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } } } }
       });
@@ -372,7 +372,7 @@ const App = (() => {
               <span>${r.feedback}</span>
             </div>
           </div>
-          <div class="breakdown-score" style="color:${r.correct ? '#22c55e' : '#ef4444'}">${r.score}/${r.maxScore}</div>
+          <div class="breakdown-score" style="color:${r.correct ? '#6AECE1' : '#ff6b6b'}">${r.score}/${r.maxScore}</div>
         </div>
       `).join('');
       lucide.createIcons();
