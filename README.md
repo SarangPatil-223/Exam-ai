@@ -25,6 +25,25 @@ Comprehensive post-administration reporting:
 - **Cohort Mapping:** Bloom’s Taxonomy distribution heatmaps and relative performance benchmarking.
 - **Audit Logs:** Full proctoring incident timelines with frame-specific risk scoring.
 
+- 
+#### NLP & Generation (Hugging Face)
+- `meta-llama/Meta-Llama-3-8B-Instruct`
+- `microsoft/deberta-v3-large`
+- `intfloat/e5-large-v2`
+- `cross-encoder/ms-marco-MiniLM-L-6-v2`
+
+#### Computer Vision
+- YOLOv8
+- InsightFace (ArcFace embeddings)
+
+### Infrastructure
+- Kubernetes-ready microservices
+- Stateless session design
+- Redis (adaptive session caching)
+- PostgreSQL (item bank storage)
+- AES-256 encryption (data at rest)
+- TLS 1.3 (in transit)
+
 ## 🛠 Technology Stack
 
 - **Frontend:** React, Vite, Chart.js, Spline (3D Visualization)
